@@ -4,6 +4,7 @@ public class Info {
     private int added = 0;
     private int changed = 0;
     private int deleted = 0;
+    private int stable = 0;
 
     public void addAdded() {
         added++;
@@ -15,6 +16,18 @@ public class Info {
 
     public void addDeleted() {
         deleted++;
+    }
+
+    public void addStable() {
+        stable++;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
+    }
+
+    public int getStable() {
+        return stable;
     }
 
     public int[] results() {
