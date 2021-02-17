@@ -25,7 +25,7 @@ public class LogFilter {
     public static void save(List<String> log, String file) {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
-                        new FileOutputStream("result.txt", false)
+                        new FileOutputStream(file, false)
                 ))) {
             log.forEach(out::println);
         } catch (FileNotFoundException e) {
@@ -36,6 +36,6 @@ public class LogFilter {
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
         log.forEach(System.out::println);
-        save(log, "result.txt");
+        save(log, "404.txt");
     }
 }
