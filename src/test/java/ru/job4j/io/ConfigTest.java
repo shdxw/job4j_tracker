@@ -1,6 +1,9 @@
 package ru.job4j.io;
 
+import junit.framework.TestCase;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.BlockJUnit4ClassRunner;
 
 import java.util.regex.Matcher;
 
@@ -12,7 +15,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithoutComment() { //
-        String path = "C:\\projects\\job4j_tracker\\src\\test\\java\\ru\\job4j\\io\\app1.properties";
+        String path = "./src/test/java/ru/job4j/io/app1.properties";
         Config config = new Config(path);
         config.load();
         //System.out.println(config.toString());
@@ -22,9 +25,9 @@ public class ConfigTest {
         );
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testWithComment() {
-        String path = "C:\\projects\\job4j_tracker\\src\\test\\java\\ru\\job4j\\io\\app2.properties";
+        String path = "./src/test/java/ru/job4j/io/app2.properties";
         Config config = new Config(path);
         config.load();
         //System.out.println(config.toString());
@@ -34,15 +37,10 @@ public class ConfigTest {
         );
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void nameWithoutValue() {
-        String path = "C:\\projects\\job4j_tracker\\src\\test\\java\\ru\\job4j\\io\\app3.properties";
+        String path = "./src/test/java/ru/job4j/io/app3.properties";
         Config config = new Config(path);
         config.load();
-        //System.out.println(config.toString());
-        assertThat(
-                config.value("name"),
-                is(nullValue())
-        );
     }
 }

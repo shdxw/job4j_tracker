@@ -1,10 +1,14 @@
 package ru.job4j.io;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringJoiner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Config {
     private final String path;
@@ -16,18 +20,22 @@ public class Config {
 
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
+            Pattern pattern = Pattern.compile("[a-zA-Z.0-9]+=[a-zA-Z.0-9\\s]+");
             read.lines().forEach(e -> {
-                if (e.matches("[a-zA-Z.0-9]+=[a-zA-Z.0-9\\s]+")) {
+                Matcher matcher = pattern.matcher(e);
+                if (matcher.matches()) {
                     e = e.trim();
                     String value = e.substring(e.indexOf("=") + 1);
                     String key = e.substring(0, e.indexOf("="));
                     //System.out.println(key + " " + value);
                     values.put(key, value);
-                } /*else {
-                    System.out.println("НЕ ПОДХОДИТ!");
-                }*/
+                } else {
+                    throw new IllegalArgumentException();
+                }
             });
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
