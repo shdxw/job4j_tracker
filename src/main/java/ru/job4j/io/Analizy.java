@@ -8,8 +8,7 @@ import java.util.regex.Pattern;
 public class Analizy {
 
     public void unavailable(String source, String target) {
-        try (PrintWriter out = new PrintWriter(new FileOutputStream(target));
-             BufferedReader read = new BufferedReader(new FileReader(source))) {
+        try (BufferedReader read = new BufferedReader(new FileReader(source))) {
             boolean broke = false;
             StringBuilder str = new StringBuilder();
             while (read.ready()) {
@@ -30,13 +29,21 @@ public class Analizy {
             if (broke) {
                 str.append("now;");
             }
-            out.print(str.toString());
+            print(str.toString(), target);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void print(String line, String target) {
+        try (PrintWriter out = new PrintWriter(new FileOutputStream(target))) {
+           out.print(line);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private boolean check(String line) {
