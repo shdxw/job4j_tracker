@@ -15,14 +15,6 @@ public class AnalizyTest {
                 "11:01:02;11:02:02;", analizy.toString(out));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void whenIllegal() {
-        String in = "./src/test/java/ru/job4j/io/un2.csv";
-        String out = "./src/test/java/ru/job4j/io/testOut.csv";
-        Analizy analizy = new Analizy();
-        analizy.unavailable(in, out);
-    }
-
     @Test
     public void exeptionMore200() {
         String in = "./src/test/java/ru/job4j/io/un3.csv";

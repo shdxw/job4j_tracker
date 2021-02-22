@@ -11,6 +11,7 @@ public class Analizy {
         try (PrintWriter out = new PrintWriter(new FileOutputStream(target));
              BufferedReader read = new BufferedReader(new FileReader(source))) {
             boolean broke = false;
+            StringBuilder str = new StringBuilder();
             while (read.ready()) {
                 String newline = read.readLine();
                 if (check(newline)) {
@@ -18,19 +19,18 @@ public class Analizy {
                     int code = Integer.parseInt(newline.split(" ")[0]);
                     String time = newline.split(" ")[1];
                     if (!broke && (code == 400 || code == 500)) {
-                        out.print(time + ";");
+                        str.append(time).append(";");
                         broke = true;
                     } else if (broke && (code != 400 && code != 500)) {
-                        out.print(time + ";" + System.lineSeparator());
+                        str.append(time).append(";").append(System.lineSeparator());
                         broke = false;
                     }
-                } else {
-                    throw new IllegalArgumentException();
                 }
             }
             if (broke) {
-                out.print("now;");
+                str.append("now;");
             }
+            out.print(str.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
