@@ -8,8 +8,15 @@ import java.util.List;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
-        search(start, "java").forEach(System.out::println);
+        validation(args);
+        Path start = Paths.get(args[0]);
+        search(start, args[1]).forEach(System.out::println);
+    }
+
+    public static void validation(String[] args) {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Usage java -jar search.jar ROOT_FOLDER EXT_OF_FILE");
+        }
     }
 
     public static List<Path> search(Path root, String ext) throws IOException {
