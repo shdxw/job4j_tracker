@@ -4,9 +4,15 @@ import java.io.File;
 
 public class Dir {
 
-    public void checkDir() {
+    private String path;
 
-    File file = new File("c:\\projects");
+    public Dir(String path) {
+        this.path = path;
+    }
+
+    public void checkDir() {
+    File file = new File(path);
+    //File file = new File("c:\\projects");
         if (!file.exists()) {
         throw new IllegalArgumentException(String.format("Not exist %s", file.getAbsoluteFile()));
     }
@@ -19,8 +25,15 @@ public class Dir {
     }
 }
 
+public void validation(String[] arguments) {
+    if (arguments.length == 0) {
+        throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+    }
+    File file = new File(arguments[0]);
+}
+
     public static void main(String[] args) {
-        Dir directory = new Dir();
+        Dir directory = new Dir(args[0]);
         directory.checkDir();
     }
 }
