@@ -14,21 +14,36 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
-                        String message = str.split(" ")[1].split("=")[1];
-                        switch (message) {
-                            case ("Hello"):
-                                out.write("HTTP/1.1 200 OK \r\n\\".getBytes());
-                                out.write("Hello, dear friend.".getBytes());
-                                break;
-                            case ("Exit"):
-                                return;
-                            default:
-                                out.write("HTTP/1.1 200 OK \r\n\\".getBytes());
-                                out.write("What do y want".getBytes());
-                                break;
+                        if (str.matches(".+=Bye.+")) {
+                            return;
                         }
                         System.out.println(str);
                     }
+
+                    out.write("HTTP/1.1 200 OK\r\n".getBytes());
+//                    boolean read = false;
+//                    while (!(str = in.readLine()).isEmpty()) {
+//                        System.out.println(str);
+//                        String message = null;
+//                        if (!read) {
+////                            message = str.split(" ")[1].split("=")[1];
+////                            switch (message) {
+////                                case ("Hello"):
+////                                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+////                                    out.write("Hello, dear friend.".getBytes());
+////                                    break;
+////                                case ("Bye"):
+////                                    return;
+////                                default:
+////                                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+////                                    out.write("What do y want".getBytes());
+////                                    break;
+////                            }
+//                        }
+//                        read = true;
+//                    }
+//                    System.out.println("~~~~~~");
+//                    read = false;
                 }
             }
         }
