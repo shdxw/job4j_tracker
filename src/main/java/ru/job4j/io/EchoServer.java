@@ -14,15 +14,14 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
-                        String message = str.split(" ")[1];
+                        String message = str.split(" ")[1].split("=")[1];
                         switch (message) {
                             case ("Hello"):
                                 out.write("HTTP/1.1 200 OK \r\n\\".getBytes());
                                 out.write("Hello, dear friend.".getBytes());
                                 break;
                             case ("Exit"):
-                                System.exit(0);
-                                break;
+                                return;
                             default:
                                 out.write("HTTP/1.1 200 OK \r\n\\".getBytes());
                                 out.write("What do y want".getBytes());
