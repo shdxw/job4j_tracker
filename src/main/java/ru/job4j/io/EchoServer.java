@@ -19,12 +19,13 @@ public class EchoServer {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
                         if (str.matches(".+=Bye.+")) {
+                            out.write("HTTP/1.1 200 OK\r\n".getBytes());
                             return;
                         }
                         System.out.println(str);
                     }
 
-                    out.write("HTTP/1.1 200 OK\r\n".getBytes());
+
 //                    boolean read = false;
 //                    while (!(str = in.readLine()).isEmpty()) {
 //                        System.out.println(str);
