@@ -15,6 +15,7 @@ public class ConsoleChat {
     private final String path;
     private final String botAnswers;
     private List<String> allAnswers;
+    private List<String> answers;
 
     private final Map<String, Function<String, Boolean>> dispatch = new HashMap<>();
 
@@ -23,6 +24,7 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
         makeAnswers();
         init();
+        answers = new ArrayList<>();
     }
 
     public Function<String, Boolean> toStop() {
@@ -80,9 +82,15 @@ public class ConsoleChat {
     }
 
     private void addAnswer(String msg, String username) {
+        answers.add(username + " " + msg + System.lineSeparator());
+    }
+
+    private void writeAnswers() {
         try (BufferedWriter out = new BufferedWriter(
                 new FileWriter(path, StandardCharsets.UTF_8, true))) {
-            out.append(username).append(msg).append(System.lineSeparator());
+            for (String answer : answers) {
+                out.append(answer);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -109,6 +117,7 @@ public class ConsoleChat {
                         addAnswer(giveAnswer(), "Bot: ");
                     }
                 }
+                writeAnswers();
     }
 
     public static void main(String[] args) {
