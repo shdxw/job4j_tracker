@@ -4,12 +4,26 @@ import java.util.Arrays;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "cat")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Cat { //класс
+    @XmlAttribute
     private String name;
+    @XmlAttribute
     private boolean sterilized;
+    @XmlAttribute
     private int age;
+
     private String[] children;
     private Contact contact;
+
+    public Cat() {
+    }
 
     public Cat(String name, boolean sterilized, int age, String[] children, Contact contact) {
         this.name = name;
