@@ -32,6 +32,26 @@ public class Cat { //класс
         this.contact = contact;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public boolean isSterilized() {
+        return sterilized;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String[] getChildren() {
+        return children;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
     @Override
     public String toString() {
         return "Cat{" +
