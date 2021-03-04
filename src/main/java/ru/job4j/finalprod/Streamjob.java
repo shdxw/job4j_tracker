@@ -1,4 +1,4 @@
-package ru.job4j.finalProd;
+package ru.job4j.finalprod;
 
 import java.util.*;
 import java.util.function.Function;

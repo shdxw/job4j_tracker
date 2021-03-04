@@ -15,14 +15,10 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
+        System.out.println("вызвал");
         return children == user.children &&
                 Objects.equals(name, user.name) &&
                 Objects.equals(birthday, user.birthday);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, children, birthday);
     }
 
     public static void main(String[] args) {
