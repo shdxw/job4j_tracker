@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+
+<cats>
+    <cat name="Barsik" status="false" age="30">
+        <children>
+            <child>myao1</child>
+            <child>myao2</child>
+        </children>
+        <contact zipCode="123" phone="89242640011" />
+    </cat>
+</cats>

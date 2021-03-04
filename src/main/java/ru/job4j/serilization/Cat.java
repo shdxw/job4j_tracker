@@ -4,7 +4,7 @@ import java.util.Arrays;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Cat {
+public class Cat { //класс
     private String name;
     private boolean sterilized;
     private int age;
