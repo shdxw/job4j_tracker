@@ -3,8 +3,6 @@ package ru.job4j.io;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.regex.Pattern;
 
 public class Shell {
 
