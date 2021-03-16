@@ -1,0 +1,10 @@
+insert into category(category_name) values('toys');
+insert into state(is_closed) values(TRUE);
+insert into role(user_role) values('admin');
+insert into service_user(name, role_id) values('ALESHA', 1);
+insert into rules(rule) values('ALESHA VSEGDA PRAV');
+insert into role_rule(role_id, rule_id) values(1, 1);
+insert into item(name, user_id, category_id, state_id) values('game', 1, 1, 1);
+insert into comments(comment, item_id) values('game omao my life', 1);
+insert into attachs(item_id) values(1);
+select * from role;
